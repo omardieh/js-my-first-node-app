@@ -1,0 +1,16 @@
+{
+  "name": "my-first-node",
+  "version": "1.0.0",
+  "description": "My First Node Project to run Javascript on the Server Side",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
