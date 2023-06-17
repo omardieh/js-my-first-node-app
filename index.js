@@ -1,38 +1,35 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 
-app.use(express.static("public"));
-// app.get("/home", (request, response, next) => {
-//   // ...
-//   response.send(`<!doctype html>
-//   <html>
-//     <head>
-//       <meta charset="utf-8">
-//       <title>Cat</title>
-//       <link rel="stylesheet" href="/stylesheets/style.css" />
-//     </head>
-//     <body>
-//       <h1>Cat</h1>
-//       <p>This is my second route</p>
-//       <img src="/images/pic.png" />
-//     </body>
-//   </html>
-// `);
-// });
+app.use(express.static(path.join(__dirname, "public"), { etag: false }));
 
-// ...
-// our first Route:
+app.set("views", __dirname + "/views");
+app.set("view engine", "hbs");
 
-app.get("/home", (request, response, next) =>
-  response.sendFile(__dirname + "/views/home-page.html")
-);
-
-// cat route:
-app.get("/cat", (request, response, next) =>
-  response.sendFile(__dirname + "/views/cat-page.html")
-);
-// ...
-
-app.listen(3000, () => {
-  console.log("listening on port 3000");
+app.get("/", (req, res, next) => {
+  let data = {
+    name: "Ironhacker",
+    bootcamp: "<h2>Berlin</h2>",
+    isAllowed: false,
+    address: "Address here",
+    cities: [
+      "Amsterdam",
+      "Barcelona",
+      "Berlin",
+      "Lisbon",
+      "Madrid",
+      "Mexico City",
+      "Miami",
+      "Paris",
+      "Sao Paulo",
+    ],
+    objExample: {
+      name: "Omar",
+      language: "Javascript",
+    },
+  };
+  res.render("index", data);
 });
+
+app.listen(3000);
